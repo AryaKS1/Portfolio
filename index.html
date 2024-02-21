@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Personal Portfolio Website</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="header">
+      <div class="container">
+        <nav>
+          <ul>
+            <li><a href="#new"> Home</a></li>
+            <li><a href="#about"> About</a></li>
+            <li><a href="#portfolio">Projects</a></li>
+            <li><a href="#contact"> Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <div id-"new" class="container">
+          <div class="text">
+            <h1>Hi, I'm <span> Arya K S</span></h1>
+          </div>
+
+          <div class="image">
+            <img src="images/Arya_img2.jpeg" width="350px" height="500px" />
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div id="about" class="full-height">
+      <div class="container-gray">
+        <div class="row">
+          <div class="about-col-1">
+            <img src="images/logo.jpeg" width="400px" height="500px" />
+          </div>
+          <div class="about-content">
+            <h1>About me</h1>
+            <p>
+              I am actively seeking a challenging software engineer position
+              with a passion for problem-solving, and eager to contribute my
+              skills to develop innovative and efficient software solutions.
+            </p>
+            <div class="tab-titles">
+              <p class="tab-links active-link" onclick="showTab('skills')">Skills</p>
+              <p class="tab-links active-link" onclick="showTab('education')">Education</p>
+            </div>
+    
+            <div id="skills" class="tab-contents active-tab">
+              <ul>
+                <li><span> <strong> Web development </strong></span></li>
+                <li><span> <strong>  App development </strong> </span></li>
+              </ul>
+            </div>
+    
+            <div id="education" class="tab-contents ">
+              <ul>
+                <li><span> <strong>    Btech </strong> </span></li>
+                <li><span> <strong> Computer Science</span> </strong></li>
+              </ul>
+         
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      function showTab(tabName) {
+        var tabs = document.getElementsByClassName("tab-contents");
+        for (var i = 0; i < tabs.length; i++) {
+          tabs[i].classList.remove("active-tab");
+        }
+        document.getElementById(tabName).classList.add("active-tab");
+      }
+    </script>
+    
+
+
+    <div id="portfolio" class="full-height">
+      <div class="container">
+        <h1 class="sub-title">My Work</h1>
+
+        <div class="work">
+          <img src="images/work-1.png" />
+          <div class="layer">
+            <h3> <span>Patient Management System </span></h3>
+            <p>
+              Manage patients records, consultation details, test report
+              uploading and medical history in a healthcare facility.
+            </p>
+          </div>
+        </div>
+
+        <div class="work">
+          <img src="images/work-2.png" />
+          <div class="layer">
+            <h3> <span>    Blood Donation Management </span></h3>
+            <p>
+              Design blood donation management database application.Created
+              database in oracle
+            </p>
+          </div>
+        </div>
+
+        <div class="work">
+          <img src="images/work-3.png" />
+          <div class="layer">
+            <h3>    <span> Deduplication </span></h3>
+            <p>
+              System that removes duplicate data in databases. It uses checksums
+              and MD5 hashing to identify duplicates.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="contact" class="full-height">
+      <div class="container">
+        <div class="row">
+          <div class="left-col">
+            <h1>Contact Me</h1>
+
+            <p>sanjuks1156@gmail.com</p>
+            <p>9778212718</p>
+          </div>
+
+          <div class="right-col">
+            <form id = "contact-form" name="submit-to-google-sheet" onsubmit="return submitForm()">
+              <input type="text" name="Name" placeholder="Your Name" /> <br />
+              <input type="email" name="email" placeholder="Your Email" />
+              <br />
+              <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+
+            
+
+              <button type="submit">Submit</button>
+            </form>
+            <div id="success-message" style="display: none;">Message sent successfully!</div>
+          </div>
+           
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const scriptURL =
+        " https://script.google.com/macros/s/AKfycbw5IPbSGZllYCS_zQ4Rx6z-u2cReaJ1Z7A3xotreLW8Y0DjfXxn0OR5OcdIurRwlfIiWg/exec";
+      const form = document.forms["submit-to-google-sheet"];
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => console.log("Success!", response))
+          .catch((error) => console.error("Error!", error.message));
+      });
+
+      function submitForm() {
+  fetch(scriptURL, { method: "POST", body: new FormData(form) })
+    .then((response) => {
+      if (response.ok) {
+        document.getElementById("success-message").style.display = "block";
+        form.reset(); // Clear the form
+        setTimeout(function() {
+          document.getElementById("success-message").style.display = "none";
+        }, 5000); // Hide the success message after 5 seconds
+      }
+    })
+    .catch((error) => console.error("Error!", error.message));
+
+  return false; // Prevent default form submission
+}
+</script>
+  
+   
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+  </body>
+</html>
